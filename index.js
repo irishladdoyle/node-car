@@ -28,6 +28,42 @@ app.use(function(req, res, next) {
 
 //--------------------
 
+// Utils ------------------------
+
+function hasCarID(carID) {
+  return Cars.some(function (car) {
+    return car.id == carID;
+  });
+}
+
+function hasEmail(email) {
+  return Customers.some(function (customer) {
+    return customer.email === email;
+  });
+}
+
+function nextCarID(Cars) {
+  if (!Cars) return 0;
+  var max = 0;
+  Cars.forEach(function (car) {
+    if (car.id > max)
+      max = car.id;
+  })
+  return max + 1;
+}
+
+function nextOrderID(Orders) {
+  if (!Orders) return 0;
+  var max = 0;
+  Orders.forEach(function (order) {
+    if (order.id > max)
+      max = order.id;
+  })
+  return max + 1;
+}
+
+// ------------------------------
+
 app.get('/cars', function(req, res) {
   console.log('Cars: ', Data.Cars);
   res.json(Data.Cars);
