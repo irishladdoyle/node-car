@@ -51,6 +51,16 @@ app.get('/rents', function(req, res) {
   res.json(rents);
 });
 
+app.get('/rents/:id', function(req, res) {
+  var rent = Data.Orders.filter(function (order) {
+    return order.id == req.params.id;
+  });
+
+  console.log('Rent: ', rent);
+  res.json(rent[0]);
+});
+
+
 
 /* istanbul ignore next */
 if (!module.parent) {
