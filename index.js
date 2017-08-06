@@ -42,6 +42,14 @@ app.get('/cars/:id', function(req, res) {
   res.json(car);
 });
 
+app.get('/rents', function(req, res) {
+  var rents = Data.Orders.filter(function (order) {
+    return order.customerEmail === req.query.email;
+  });
+
+  console.log('Rents: ', rents);
+  res.json(rents);
+});
 
 
 /* istanbul ignore next */
