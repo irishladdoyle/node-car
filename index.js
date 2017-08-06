@@ -33,6 +33,17 @@ app.get('/cars', function(req, res) {
   res.json(Data.Cars);
 });
 
+app.get('/cars/:id', function(req, res) {
+  var car = Data.Cars.find(function (car) {
+    return car.id == req.params.id;
+  });
+
+  console.log('Car: ', car);
+  res.json(car);
+});
+
+
+
 /* istanbul ignore next */
 if (!module.parent) {
 	  app.listen(4000);
